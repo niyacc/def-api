@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.niya.api.dao.UserDAO">
+
+    <select id="getTotalSize" resultType="Integer">
+        SELECT
+            count(1)
+        FROM
+            tb_user
+        WHERE
+        <![CDATA[status != -1]]>
+    </select>
+
+    <select id="loadUserByName" resultType="cn.niya.api.entity.UserPO">
+        SELECT
+            user_name ,
+            user_password ,
+            user_authorities
+        FROM
+            tb_user
+        WHERE
+            user_status = 1
+          AND
+            user_name = #{username}
+    </select>
+
+    <!--    <resultMap id="userMap" type="com.mca.api.entity.SimpleUserLogin">-->
+    <!--        <result column="user_name" property="username"/>-->
+    <!--        <result column="user_password" property="password"/>-->
+    <!--    </resultMap>-->
+
+    <!--    <sql id="userSql">-->
+    <!--        user_name AS suername,-->
+    <!--        user_password AS password-->
+    <!--    </sql>-->
+
+    <!--    <select id="getUserByName" resultMap="userMap">-->
+    <!--        SELECT-->
+    <!--        <include refid="userSql"></include>-->
+    <!--        FROM-->
+    <!--        simple_user-->
+    <!--        WHERE-->
+    <!--        user_name = #{userName}-->
+    <!--    </select>-->
+
+
+</mapper>
